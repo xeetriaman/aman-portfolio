@@ -56,7 +56,7 @@ export function PathChart() {
           Today
         </text>
 
-        <path d={line(done)} fill="none" className="path-draw stroke-primary" strokeWidth={3} strokeLinejoin="round" pathLength={1} />
+        <path d={line(done)} fill="none" className="path-draw stroke-primary" strokeWidth={3} strokeLinejoin="round" />
         <path d={line([lastDone, ...planned])} fill="none" className="stroke-marigold" strokeWidth={3} strokeDasharray="7 7" />
 
         {pts.map((p, i) => (
