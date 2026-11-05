@@ -37,20 +37,7 @@
   ::selection { background: hsl(var(--primary) / 0.2); }
 }
 
-/* The one motion on the page: the career line draws itself once on load */
-@layer components {
-  .path-draw {
-    stroke-dasharray: 1200;
-    stroke-dashoffset: 1200;
-    animation: path-draw 1.4s 0.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-  }
-}
-@keyframes path-draw {
-  to { stroke-dashoffset: 0; }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .path-draw { animation: none; stroke-dashoffset: 0; }
   * { transition: none !important; }
 }

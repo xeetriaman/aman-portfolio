@@ -13,18 +13,6 @@ export const profile = {
   location: "Hurstville, Sydney",
 };
 
-// Career milestones, in time order. `t` is the date as a decimal year.
-export type Milestone = { t: number; when: string; label: string; where: string; planned?: boolean };
-
-export const path: Milestone[] = [
-  { t: 2024.3, when: "2024", label: "BSc Computer Science & IT", where: "Tribhuvan University" },
-  { t: 2024.92, when: "Dec 2024", label: "Frontend developer intern", where: "Laxmi Soft" },
-  { t: 2025.25, when: "Apr 2025", label: "React developer intern", where: "Ripplebytes" },
-  { t: 2025.5, when: "Jul 2025", label: "Python & data science intern", where: "Panacea Solutions" },
-  { t: 2026.15, when: "2026", label: "Master of Data Science", where: "Macquarie University" },
-  { t: 2028.45, when: "Jun 2028", label: "Graduate, data analyst", where: "Sydney", planned: true },
-];
-
 export const skills: { group: string; items: string[] }[] = [
   { group: "Data analysis", items: ["Python", "Pandas", "NumPy", "R", "R Markdown", "Data cleaning", "EDA", "Statistics", "Excel"] },
   { group: "Databases", items: ["SQL", "MySQL", "PostgreSQL", "MongoDB", "Relational design"] },

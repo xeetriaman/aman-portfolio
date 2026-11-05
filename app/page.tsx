@@ -1,6 +1,5 @@
 import { FileText, Github, Linkedin } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
-import { PathChart } from "@/components/path-chart";
 import { Button } from "@/components/ui/button";
 import { certifications, education, experience, profile, projects, skills } from "@/data/profile";
 
@@ -39,7 +38,6 @@ export default function Home() {
             </p>
           </div>
 
-          <PathChart />
         </section>
 
         {/* Projects */}
