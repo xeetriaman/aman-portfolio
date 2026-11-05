@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 213 22% 95%;
+    --foreground: 215 52% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 215 52% 11%;
+    --primary: 215 52% 11%;
+    --primary-foreground: 213 22% 96%;
+    --secondary: 213 20% 90%;
+    --secondary-foreground: 215 52% 11%;
+    --muted: 213 20% 90%;
+    --muted-foreground: 217 15% 41%;
+    --accent: 222 66% 34%;
+    --accent-foreground: 0 0% 100%;
+    --border: 214 19% 86%;
+    --input: 214 19% 86%;
+    --ring: 222 66% 34%;
+    --brand: 222 66% 34%;
+    --crimson: 351 82% 39%;
+    --code-bg: 214 33% 97%;
+    --code-key: 222 66% 34%;
+    --code-str: 143 44% 33%;
+    --code-num: 351 82% 39%;
+    --radius: 0.625rem;
+  }
+  .dark {
+    --background: 220 45% 9%;
+    --foreground: 214 33% 93%;
+    --card: 217 41% 12%;
+    --card-foreground: 214 33% 93%;
+    --primary: 214 33% 93%;
+    --primary-foreground: 220 45% 9%;
+    --secondary: 218 35% 17%;
+    --secondary-foreground: 214 33% 93%;
+    --muted: 218 35% 17%;
+    --muted-foreground: 216 20% 67%;
+    --accent: 222 100% 78%;
+    --accent-foreground: 220 45% 9%;
+    --border: 218 34% 22%;
+    --input: 218 34% 22%;
+    --ring: 222 100% 78%;
+    --brand: 222 100% 78%;
+    --crimson: 353 100% 74%;
+    --code-bg: 218 44% 11%;
+    --code-key: 222 100% 78%;
+    --code-str: 139 51% 66%;
+    --code-num: 353 100% 80%;
+  }
+  * { @apply border-border; }
+  html { scroll-behavior: smooth; }
+  body { @apply bg-background text-foreground font-sans antialiased; }
+  h1, h2, h3 { text-wrap: balance; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}
