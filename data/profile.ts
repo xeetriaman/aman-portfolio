@@ -14,7 +14,7 @@ export const profile = {
 };
 
 export const skills: { group: string; items: string[] }[] = [
-  { group: "Data analysis", items: ["Python", "Pandas", "NumPy", "R", "R Markdown", "Data cleaning", "EDA", "Statistics", "Excel"] },
+  { group: "Data analysis", items: ["Python", "Pandas", "NumPy", "scikit-learn", "Matplotlib", "R", "R Markdown", "Data cleaning", "EDA", "Statistics", "Excel"] },
   { group: "Databases", items: ["SQL", "MySQL", "PostgreSQL", "MongoDB", "Relational design"] },
   { group: "Web development", items: ["React", "Next.js", "TypeScript", "Node.js", "Express", "REST APIs", "HTML/SCSS", "Tailwind"] },
   { group: "Tools", items: ["Git", "GitHub", "Jupyter", "VS Code", "Figma", "C"] },
