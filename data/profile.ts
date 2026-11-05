@@ -74,17 +74,9 @@ export const projects: Project[] = [
     summary: "Full-stack booking app with patient and doctor dashboards, appointments, reviews and secure JWT login.",
     stack: ["React", "Node.js", "Express", "MongoDB"],
     links: [
+      { label: "Live demo", href: "https://doctor-appointment-xi-kohl.vercel.app" },
       { label: "Frontend code", href: "https://github.com/xeetriaman/Doctor-Appointment-Project-Frontend" },
       { label: "Backend code", href: "https://github.com/xeetriaman/Doctor-Appointment-Project-Backend" },
-    ],
-  },
-  {
-    title: "E-Gaming Marketplace",
-    summary: "REST API for products, categories, brands, orders, reviews and users with image uploads, plus a responsive storefront.",
-    stack: ["Node.js", "Express", "MongoDB", "Bootstrap"],
-    links: [
-      { label: "API code", href: "https://github.com/xeetriaman/E-Gaming-Marketplace-API" },
-      { label: "Frontend code", href: "https://github.com/xeetriaman/E-Gaming-Marketplace-Frontend-Template" },
     ],
   },
   {
@@ -92,6 +84,7 @@ export const projects: Project[] = [
     summary: "Tour listings, bookings, reviews and user accounts in a React front end with an Express and MongoDB back end.",
     stack: ["React", "Express", "MongoDB"],
     links: [
+      { label: "Live demo", href: "https://merntour.vercel.app" },
       { label: "Frontend code", href: "https://github.com/xeetriaman/Tour-Booking-Project-Frontend" },
       { label: "Backend code", href: "https://github.com/xeetriaman/Tour-Booking-Project-Backend" },
     ],
