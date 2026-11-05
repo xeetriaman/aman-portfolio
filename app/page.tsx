@@ -45,7 +45,7 @@ export default function Home() {
           <div className="container">
             <SectionHeading id="projects">Projects</SectionHeading>
             <p className="mt-3 max-w-[60ch] text-muted-foreground">
-              Two full-stack apps you can try live, and the data projects I add each week.
+              Data analysis with live dashboards, and full-stack apps you can try for yourself.
             </p>
             <ul className="mt-10 divide-y border-y">
               {projects.map((p) => (
@@ -65,8 +65,8 @@ export default function Home() {
                   {p.links && (
                     <div className="flex flex-wrap gap-2 md:justify-end">
                       {p.links.map((l, i) => (
-                        <Button key={l.href} asChild size="sm" variant={i === 0 && l.label === "Live demo" ? "default" : "outline"}>
-                          <a href={l.href} target="_blank" rel="noreferrer">
+                        <Button key={l.href} asChild size="sm" variant={i === 0 ? "default" : "outline"}>
+                          <a href={l.href} {...(l.href.startsWith("/") ? {} : { target: "_blank", rel: "noreferrer" })}>
                             {l.label === "Live demo" ? "Open live demo" : l.label}
                           </a>
                         </Button>

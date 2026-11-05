@@ -64,10 +64,14 @@ export type Project = {
 // New data projects get added to the top of this list as they ship.
 export const projects: Project[] = [
   {
-    title: "Cricket match outcome prediction",
-    summary: "Predicting T20 match results from toss, venue and recent team form, comparing models and evaluating them honestly.",
-    stack: ["Python", "Pandas", "scikit-learn"],
-    status: "in-progress",
+    title: "IPL Match Analytics, 2008–2026",
+    summary:
+      "What decides a T20 match? Analysed all 1,243 IPL matches ball by ball with Python and SQL, found the toss barely matters, and built a live win-probability model that calls 80% of chases correctly after 10 overs.",
+    stack: ["Python", "SQL", "pandas", "scikit-learn", "Data visualisation"],
+    links: [
+      { label: "Open dashboard", href: "/projects/ipl" },
+      { label: "Code and SQL", href: "https://github.com/xeetriaman/data-projects/tree/main/ipl-match-analytics" },
+    ],
   },
   {
     title: "Doctor Appointment Booking Platform",
