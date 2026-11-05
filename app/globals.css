@@ -3,60 +3,54 @@
 @tailwind utilities;
 
 @layer base {
+  /* Paper, ink and one chart blue; marigold only marks what is still planned */
   :root {
-    --background: 213 22% 95%;
-    --foreground: 215 52% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 215 52% 11%;
-    --primary: 215 52% 11%;
-    --primary-foreground: 213 22% 96%;
-    --secondary: 213 20% 90%;
-    --secondary-foreground: 215 52% 11%;
-    --muted: 213 20% 90%;
-    --muted-foreground: 217 15% 41%;
-    --accent: 222 66% 34%;
-    --accent-foreground: 0 0% 100%;
-    --border: 214 19% 86%;
-    --input: 214 19% 86%;
-    --ring: 222 66% 34%;
-    --brand: 222 66% 34%;
-    --crimson: 351 82% 39%;
-    --code-bg: 214 33% 97%;
-    --code-key: 222 66% 34%;
-    --code-str: 143 44% 33%;
-    --code-num: 351 82% 39%;
-    --radius: 0.625rem;
+    --background: 220 33% 98%;
+    --foreground: 221 38% 14%;
+    --muted-foreground: 220 14% 41%;
+    --secondary: 220 30% 94%;
+    --border: 220 26% 89%;
+    --input: 220 26% 89%;
+    --primary: 226 78% 53%;
+    --primary-foreground: 0 0% 100%;
+    --ring: 226 78% 53%;
+    --marigold: 40 82% 50%;
+    --radius: 0.5rem;
   }
   .dark {
-    --background: 220 45% 9%;
-    --foreground: 214 33% 93%;
-    --card: 217 41% 12%;
-    --card-foreground: 214 33% 93%;
-    --primary: 214 33% 93%;
-    --primary-foreground: 220 45% 9%;
-    --secondary: 218 35% 17%;
-    --secondary-foreground: 214 33% 93%;
-    --muted: 218 35% 17%;
-    --muted-foreground: 216 20% 67%;
-    --accent: 222 100% 78%;
-    --accent-foreground: 220 45% 9%;
-    --border: 218 34% 22%;
-    --input: 218 34% 22%;
-    --ring: 222 100% 78%;
-    --brand: 222 100% 78%;
-    --crimson: 353 100% 74%;
-    --code-bg: 218 44% 11%;
-    --code-key: 222 100% 78%;
-    --code-str: 139 51% 66%;
-    --code-num: 353 100% 80%;
+    --background: 221 45% 11%;
+    --foreground: 220 35% 93%;
+    --muted-foreground: 218 17% 66%;
+    --secondary: 221 35% 17%;
+    --border: 221 31% 22%;
+    --input: 221 31% 22%;
+    --primary: 227 100% 74%;
+    --primary-foreground: 221 45% 11%;
+    --ring: 227 100% 74%;
+    --marigold: 39 87% 62%;
   }
   * { @apply border-border; }
-  html { scroll-behavior: smooth; }
-  body { @apply bg-background text-foreground font-sans antialiased; }
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+  body { @apply bg-background text-foreground font-sans antialiased; font-feature-settings: "tnum" 0; }
   h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+  ::selection { background: hsl(var(--primary) / 0.2); }
+}
+
+/* The one motion on the page: the career line draws itself once on load */
+@layer components {
+  .path-draw {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: path-draw 1.4s 0.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  }
+}
+@keyframes path-draw {
+  to { stroke-dashoffset: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  * { transition: none !important; animation: none !important; }
+  .path-draw { animation: none; stroke-dashoffset: 0; }
+  * { transition: none !important; }
 }

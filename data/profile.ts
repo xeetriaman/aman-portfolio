@@ -1,6 +1,6 @@
 export const profile = {
   name: "Aman Chhetri",
-  role: "Data Analyst · Developer · Sydney",
+  role: "Data analyst and developer",
   headline: "Data Analyst | Python, SQL, R | Master of Data Science",
   lede:
     "Master of Data Science student at Macquarie University. I clean, analyse and explain data with Python, SQL and R, and I build the web apps that put it in front of people.",
@@ -12,6 +12,18 @@ export const profile = {
   resume: "/Aman_Chhetri_Resume.pdf",
   location: "Hurstville, Sydney",
 };
+
+// Career milestones, in time order. `t` is the date as a decimal year.
+export type Milestone = { t: number; when: string; label: string; where: string; planned?: boolean };
+
+export const path: Milestone[] = [
+  { t: 2024.3, when: "2024", label: "BSc Computer Science & IT", where: "Tribhuvan University" },
+  { t: 2024.92, when: "Dec 2024", label: "Frontend developer intern", where: "Laxmi Soft" },
+  { t: 2025.25, when: "Apr 2025", label: "React developer intern", where: "Ripplebytes" },
+  { t: 2025.5, when: "Jul 2025", label: "Python & data science intern", where: "Panacea Solutions" },
+  { t: 2026.15, when: "2026", label: "Master of Data Science", where: "Macquarie University" },
+  { t: 2028.45, when: "Jun 2028", label: "Graduate, data analyst", where: "Sydney", planned: true },
+];
 
 export const skills: { group: string; items: string[] }[] = [
   { group: "Data analysis", items: ["Python", "Pandas", "NumPy", "R", "R Markdown", "Data cleaning", "EDA", "Statistics", "Excel"] },
@@ -36,7 +48,7 @@ export const experience: Job[] = [
   {
     when: "Apr – Jun 2025",
     title: "React Developer Intern",
-    org: "Ripplebytes · Kathmandu",
+    org: "Ripplebytes, Kathmandu",
     points: [
       "Helped deliver an e-commerce website, building product, detail and cart pages in Next.js, React and TypeScript.",
       "Created reusable UI components and connected pages to backend APIs for live product data.",
@@ -45,7 +57,7 @@ export const experience: Job[] = [
   {
     when: "Dec 2024 – Feb 2025",
     title: "Frontend Web Developer Intern",
-    org: "Laxmi Soft Pvt. Ltd. · Kathmandu",
+    org: "Laxmi Soft Pvt. Ltd., Kathmandu",
     points: [
       "Turned Figma designs into responsive HTML and SCSS for hotel, evaluation and municipality management systems.",
       "Built dashboards, forms and navigation components and tested them across devices.",
