@@ -64,6 +64,15 @@ export type Project = {
 // New data projects get added to the top of this list as they ship.
 export const projects: Project[] = [
   {
+    title: "Sydney House Price Model, 2018",
+    summary:
+      "Cleaned 210,551 NSW Valuer General sale records to 37,910 Sydney house sales, tracked a 12% price fall through 2018 in SQL, and tested price models on later sales: gradient boosting beat the suburb-median baseline (13.1% vs 14.7% typical error).",
+    stack: ["Python", "SQL", "pandas", "scikit-learn", "Machine learning"],
+    links: [
+      { label: "Code and SQL", href: "https://github.com/xeetriaman/data-projects/tree/main/sydney-house-prices" },
+    ],
+  },
+  {
     title: "IPL Match Analytics, 2008–2026",
     summary:
       "What decides a T20 match? Analysed all 1,243 IPL matches ball by ball with Python and SQL, found the toss barely matters, and built a live win-probability model that calls 80% of chases correctly after 10 overs.",
