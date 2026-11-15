@@ -11,6 +11,14 @@ Project skills live in `.claude/skills/`. Use them on every UI or code change:
 - `emil-design-eng` (emilkowalski/skills): motion and polish. Animate only where it helps.
 - `karpathy-guidelines` (multica-ai/andrej-karpathy-skills): simple code, surgical changes, verifiable goals.
 
+## Animated components (React Bits)
+
+`components.json` registers the React Bits registry. Add a component with
+`npx shadcn@latest add @react-bits/<Name>-TS-TW` (TypeScript + Tailwind variant only).
+Use them sparingly: a hero text reveal, card hover, count-up numbers. No full-screen
+animated backgrounds. Prefer components with no extra dependency; check a component's
+`dependencies` with `npx shadcn@latest view` before adding it. Respect reduced motion.
+
 ## Rules
 
 - Keep code plain and readable: small components, clear names, no dead code, no new dependency without a reason.
