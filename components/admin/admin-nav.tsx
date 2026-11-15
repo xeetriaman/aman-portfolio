@@ -28,6 +28,7 @@ export function AdminNav() {
           <Link
             key={l.href}
             href={l.href}
+            prefetch
             aria-current={here ? "page" : undefined}
             onClick={() => !here && setPending(l.href)}
             className={cn(
