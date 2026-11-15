@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { ChanceMeter } from "@/components/admin/chance-meter";
 import { CopyButton } from "@/components/admin/copy-button";
+import { MatchMeter } from "@/components/admin/match-meter";
+import { SourceBadge } from "@/components/admin/source-badge";
 import { Chip, Section } from "@/components/admin/section";
 import { StatusSelect } from "@/components/admin/status";
 import { Button } from "@/components/ui/button";
@@ -16,7 +18,6 @@ export default async function JobPage({ params }: { params: { id: string } }) {
   const missing = new Set(job.missing_skills.map((s) => s.toLowerCase()));
   const facts = [
     job.location,
-    job.source && `Found on ${job.source}`,
     `Added ${shortDate(job.found_on)}`,
     job.closes_on && `Closes ${shortDate(job.closes_on)}`,
     job.applied_on && `Applied ${shortDate(job.applied_on)}`,
@@ -29,7 +30,10 @@ export default async function JobPage({ params }: { params: { id: string } }) {
       </Link>
 
       <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">{job.role}</h1>
-      <p className="mt-2 text-lg">{job.company}</p>
+      <p className="mt-2 flex flex-wrap items-center gap-3 text-lg">
+        {job.company}
+        <SourceBadge source={job.source} />
+      </p>
       <p className="mt-1 text-sm text-muted-foreground">{facts.join(" · ")}</p>
 
       <div className="mt-6 flex flex-wrap items-center gap-3">
@@ -43,10 +47,11 @@ export default async function JobPage({ params }: { params: { id: string } }) {
       </div>
 
       <Section title="Your chance">
-        <div className="border-t pt-4">
+        <div className="flex flex-wrap items-center gap-x-8 gap-y-3 border-t pt-4">
           <ChanceMeter value={job.chance} />
-          {job.chance_reason && <p className="mt-2 max-w-[65ch] text-[15px] text-muted-foreground">{job.chance_reason}</p>}
+          <MatchMeter skills={job.skills} missing={job.missing_skills} size="lg" />
         </div>
+        {job.chance_reason && <p className="mt-3 max-w-[65ch] text-[15px] text-muted-foreground">{job.chance_reason}</p>}
       </Section>
 
       {job.skills.length > 0 && (
