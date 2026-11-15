@@ -64,6 +64,16 @@ export type Project = {
 // New data projects get added to the top of this list as they ship.
 export const projects: Project[] = [
   {
+    title: "NSW Retail Sales Forecast, 2010–2025",
+    summary:
+      "Fifteen years of ABS monthly retail turnover for NSW by store type, analysed in SQL and forecast a year ahead with Holt-Winters. Backtested over three years, it averaged 3.73% error against 6.41% for a same-month-last-year baseline, and 1.41% for total retail.",
+    stack: ["Python", "SQL", "pandas", "statsmodels", "Forecasting"],
+    links: [
+      { label: "Open dashboard", href: "/projects/nsw-retail-forecast" },
+      { label: "Code and SQL", href: "https://github.com/xeetriaman/data-projects/tree/main/nsw-retail-forecast" },
+    ],
+  },
+  {
     title: "Sydney House Price Model, 2018",
     summary:
       "Cleaned 210,551 NSW Valuer General sale records to 37,910 Sydney house sales, tracked a 12% price fall through 2018 in SQL, and tested price models on later sales: gradient boosting beat the suburb-median baseline (13.1% vs 14.7% typical error).",

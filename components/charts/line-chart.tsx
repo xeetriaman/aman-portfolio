@@ -1,8 +1,13 @@
-type Series = { name: string; values: number[]; tone: "primary" | "muted" };
+type Tone = "primary" | "muted" | "accent";
+type Series = { name: string; values: number[]; tone: Tone };
+
+const STROKE: Record<Tone, string> = { primary: "stroke-primary", muted: "stroke-muted-foreground/50", accent: "stroke-marigold" };
+const FILL: Record<Tone, string> = { primary: "fill-primary", muted: "fill-muted-foreground/50", accent: "fill-marigold" };
+const SWATCH: Record<Tone, string> = { primary: "bg-primary", muted: "bg-muted-foreground/50", accent: "bg-marigold" };
 
 const W = 640;
 const H = 260;
-const PAD = { left: 44, right: 16, top: 16, bottom: 32 };
+const PAD = { left: 52, right: 28, top: 16, bottom: 32 };
 
 /** Simple responsive SVG line chart for season-by-season values. */
 export function LineChart({
@@ -54,7 +59,7 @@ export function LineChart({
           <g key={t}>
             <line x1={PAD.left} x2={W - PAD.right} y1={y(t)} y2={y(t)} className="stroke-border" />
             <text x={PAD.left - 8} y={y(t) + 4} textAnchor="end" className="fill-muted-foreground text-[11px]">
-              {t}
+              {t.toLocaleString("en-AU")}
               {unit}
             </text>
           </g>
@@ -72,11 +77,11 @@ export function LineChart({
               fill="none"
               strokeWidth={2.5}
               strokeLinejoin="round"
-              className={s.tone === "primary" ? "stroke-primary" : "stroke-muted-foreground/50"}
+              className={STROKE[s.tone]}
               points={s.values.map((v, i) => `${x(i)},${y(v)}`).join(" ")}
             />
             {s.values.map((v, i) => (
-              <circle key={i} cx={x(i)} cy={y(v)} r={3} className={s.tone === "primary" ? "fill-primary" : "fill-muted-foreground/50"}>
+              <circle key={i} cx={x(i)} cy={y(v)} r={3} className={FILL[s.tone]}>
                 <title>
                   {labels[i]}: {v}
                   {unit}
@@ -90,7 +95,7 @@ export function LineChart({
         <figcaption className="mt-2 flex flex-wrap gap-5 text-sm text-muted-foreground">
           {series.map((s) => (
             <span key={s.name} className="flex items-center gap-2">
-              <span aria-hidden className={`inline-block h-0.5 w-5 ${s.tone === "primary" ? "bg-primary" : "bg-muted-foreground/50"}`} />
+              <span aria-hidden className={`inline-block h-0.5 w-5 ${SWATCH[s.tone]}`} />
               {s.name}
             </span>
           ))}
