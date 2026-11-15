@@ -15,6 +15,8 @@
     --primary-foreground: 0 0% 100%;
     --ring: 226 78% 53%;
     --marigold: 40 82% 50%;
+    --positive: 156 62% 30%;
+    --negative: 2 66% 47%;
     --radius: 0.5rem;
   }
   .dark {
@@ -28,6 +30,8 @@
     --primary-foreground: 221 45% 11%;
     --ring: 227 100% 74%;
     --marigold: 39 87% 62%;
+    --positive: 152 48% 58%;
+    --negative: 2 80% 70%;
   }
   * { @apply border-border; }
   html { scroll-behavior: smooth; scroll-padding-top: 5rem; }

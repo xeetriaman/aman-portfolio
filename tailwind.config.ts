@@ -2,7 +2,7 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
   darkMode: ["class"],
-  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./lib/**/*.{ts,tsx}"],
   theme: {
     container: { center: true, padding: "1.25rem", screens: { "2xl": "1040px" } },
     extend: {
@@ -16,6 +16,8 @@ const config: Config = {
         secondary: { DEFAULT: "hsl(var(--secondary) / <alpha-value>)", foreground: "hsl(var(--foreground) / <alpha-value>)" },
         muted: { DEFAULT: "hsl(var(--secondary) / <alpha-value>)", foreground: "hsl(var(--muted-foreground) / <alpha-value>)" },
         marigold: "hsl(var(--marigold) / <alpha-value>)",
+        positive: "hsl(var(--positive) / <alpha-value>)",
+        negative: "hsl(var(--negative) / <alpha-value>)",
         brand: "hsl(var(--primary) / <alpha-value>)",
       },
       borderRadius: { lg: "var(--radius)", md: "calc(var(--radius) - 2px)", sm: "calc(var(--radius) - 4px)" },
