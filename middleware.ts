@@ -20,9 +20,9 @@ export async function middleware(request: NextRequest) {
     }
   );
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  // getClaims verifies the signed session locally (ES256 keys) instead of calling the auth server on every tap.
+  const { data } = await supabase.auth.getClaims();
+  const user = data?.claims;
   const onLogin = request.nextUrl.pathname === "/admin/login";
 
   if (!user && !onLogin) return NextResponse.redirect(new URL("/admin/login", request.url));
