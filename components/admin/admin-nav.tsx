@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -15,15 +16,20 @@ const links = [
 
 export function AdminNav() {
   const path = usePathname();
+  // Move the underline the moment a tab is tapped, before the next page has loaded.
+  const [pending, setPending] = useState<string | null>(null);
+  useEffect(() => setPending(null), [path]);
   return (
     <nav aria-label="Admin" className="-mb-px flex gap-5 overflow-x-auto sm:gap-6 [scrollbar-width:none]">
       {links.map((l) => {
-        const active = l.href === "/admin" ? path === "/admin" : path.startsWith(l.href);
+        const here = l.href === "/admin" ? path === "/admin" : path.startsWith(l.href);
+        const active = pending ? pending === l.href : here;
         return (
           <Link
             key={l.href}
             href={l.href}
-            aria-current={active ? "page" : undefined}
+            aria-current={here ? "page" : undefined}
+            onClick={() => !here && setPending(l.href)}
             className={cn(
               "shrink-0 border-b-2 py-3 text-[15px] transition-colors",
               active ? "border-primary font-semibold text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"

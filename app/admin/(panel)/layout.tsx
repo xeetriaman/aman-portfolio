@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AdminNav } from "@/components/admin/admin-nav";
+import { SubmitButton } from "@/components/admin/submit-button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { signOut } from "@/app/admin/actions";
 
@@ -19,7 +20,7 @@ export default function PanelLayout({ children }: { children: React.ReactNode })
               Public site
             </a>
             <form action={signOut}>
-              <button className="px-2 text-sm text-muted-foreground hover:text-foreground">Sign out</button>
+              <SubmitButton className="px-2 text-sm text-muted-foreground hover:text-foreground">Sign out</SubmitButton>
             </form>
             <ThemeToggle />
           </div>

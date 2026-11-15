@@ -39,6 +39,8 @@
   h1, h2, h3 { text-wrap: balance; }
   p { text-wrap: pretty; }
   ::selection { background: hsl(var(--primary) / 0.2); }
+  html { scrollbar-color: hsl(var(--border)) transparent; }
+  input, textarea { caret-color: hsl(var(--primary)); }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -1,6 +1,7 @@
 import { Minus, Plus } from "lucide-react";
 import { stepCourse } from "@/app/admin/actions";
 import { PageTitle } from "@/components/admin/section";
+import { SubmitButton } from "@/components/admin/submit-button";
 import { getCourses, type Course } from "@/lib/admin/data";
 import { daysUntil, shortDate } from "@/lib/admin/format";
 import { cn } from "@/lib/utils";
@@ -21,13 +22,13 @@ function StepButton({ course, to, label, children }: { course: Course; to: numbe
     <form action={stepCourse}>
       <input type="hidden" name="id" value={course.id} />
       <input type="hidden" name="done" value={to} />
-      <button
+      <SubmitButton
         disabled={disabled}
         aria-label={label}
-        className="grid size-10 place-items-center rounded-md border hover:border-foreground/40 disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="grid size-10 place-items-center rounded-md border transition-colors hover:border-foreground/40 active:bg-secondary disabled:opacity-40 aria-busy:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       >
         {children}
-      </button>
+      </SubmitButton>
     </form>
   );
 }
