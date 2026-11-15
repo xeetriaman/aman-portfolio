@@ -1,7 +1,19 @@
 type Row = { label: string; value: number; note?: string; tone?: "primary" | "muted" | "accent" };
 
 /** Horizontal bars with labels on the left; values are percentages or plain numbers. */
-export function BarRows({ rows, max, unit = "%", reference }: { rows: Row[]; max: number; unit?: string; reference?: number }) {
+export function BarRows({
+  rows,
+  max,
+  unit = "%",
+  prefix = "",
+  reference,
+}: {
+  rows: Row[];
+  max: number;
+  unit?: string;
+  prefix?: string;
+  reference?: number;
+}) {
   return (
     <ul className="space-y-2.5">
       {rows.map((r) => (
@@ -25,7 +37,8 @@ export function BarRows({ rows, max, unit = "%", reference }: { rows: Row[]; max
               style={{ width: `${(r.value / max) * 100}%` }}
             />
             <span className="ml-2 text-sm font-semibold tabular-nums">
-              {Number.isInteger(r.value) ? r.value : r.value.toFixed(1)}
+              {prefix}
+              {Number.isInteger(r.value) ? r.value.toLocaleString() : r.value.toFixed(1)}
               {unit}
             </span>
           </span>

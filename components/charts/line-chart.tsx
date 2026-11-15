@@ -15,6 +15,7 @@ export function LineChart({
   highlightFrom,
   highlightLabel,
   title,
+  everyLabel = false,
 }: {
   labels: (string | number)[];
   series: Series[];
@@ -25,6 +26,7 @@ export function LineChart({
   highlightFrom?: number;
   highlightLabel?: string;
   title: string;
+  everyLabel?: boolean;
 }) {
   const x = (i: number) => PAD.left + (i / (labels.length - 1)) * (W - PAD.left - PAD.right);
   const y = (v: number) => H - PAD.bottom - ((v - min) / (max - min)) * (H - PAD.top - PAD.bottom);
@@ -58,7 +60,7 @@ export function LineChart({
           </g>
         ))}
         {labels.map((l, i) =>
-          i % 2 === 0 ? (
+          everyLabel || i % 2 === 0 ? (
             <text key={l} x={x(i)} y={H - 10} textAnchor="middle" className="fill-muted-foreground text-[11px]">
               {l}
             </text>

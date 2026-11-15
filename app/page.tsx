@@ -1,5 +1,6 @@
 import { FileText, Github, Linkedin } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
+import BlurText from "@/components/motion/BlurText";
 import { Button } from "@/components/ui/button";
 import { certifications, education, experience, profile, projects, skills } from "@/data/profile";
 
@@ -18,9 +19,13 @@ export default function Home() {
       <main id="top">
         {/* Hero: who, what, and the one action a recruiter needs */}
         <section className="container pb-16 pt-14 sm:pt-20">
-          <h1 className="max-w-[17ch] text-[2.6rem] font-extrabold leading-[1.04] tracking-[-0.035em] sm:text-6xl md:text-[4.25rem]">
-            I analyse data and build the apps that show it.
-          </h1>
+          <BlurText
+            as="h1"
+            text="I analyse data and build the apps that show it."
+            trigger="load"
+            delay={70}
+            className="max-w-[17ch] text-[2.6rem] font-extrabold leading-[1.04] tracking-[-0.035em] sm:text-6xl md:text-[4.25rem]"
+          />
           <p className="mt-6 max-w-[60ch] text-lg leading-relaxed text-muted-foreground sm:text-xl">
             {profile.lede}
           </p>

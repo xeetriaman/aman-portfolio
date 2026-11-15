@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { LineChart } from "@/components/charts/line-chart";
 import { BarRows } from "@/components/charts/bar-rows";
 import { WinCalculator } from "@/components/charts/win-calculator";
+import { StatRow, type Stat } from "@/components/stat-row";
 import ipl from "@/data/ipl.json";
 
 export const metadata: Metadata = {
@@ -35,11 +36,11 @@ export default function IplPage() {
   const live = ipl.live.by_stage as Record<string, { accuracy: number }>;
   const retrain = ipl.live.retrain_check;
 
-  const stats = [
-    { value: s.matches.toLocaleString(), label: `IPL matches analysed, ${s.seasons}` },
-    { value: `${s.toss_winner_win_pct}%`, label: "of matches won by the toss winner" },
-    { value: `${s.chasing_win_pct}%`, label: "of matches won by the chasing side" },
-    { value: `${Math.round(latest.avg_first_innings)}`, label: `average first-innings score in ${latest.season}` },
+  const stats: Stat[] = [
+    { value: s.matches, label: `IPL matches analysed, ${s.seasons}` },
+    { value: s.toss_winner_win_pct, suffix: "%", decimals: 1, label: "of matches won by the toss winner" },
+    { value: s.chasing_win_pct, suffix: "%", decimals: 1, label: "of matches won by the chasing side" },
+    { value: Math.round(latest.avg_first_innings), label: `average first-innings score in ${latest.season}` },
   ];
 
   return (
@@ -67,15 +68,7 @@ export default function IplPage() {
           </Button>
         </div>
 
-        <dl className="mt-12 grid grid-cols-2 gap-x-6 gap-y-8 border-t pt-10 md:grid-cols-4">
-          {stats.map((st) => (
-            <div key={st.label}>
-              <dt className="sr-only">{st.label}</dt>
-              <dd className="text-4xl font-extrabold tabular-nums tracking-tight">{st.value}</dd>
-              <dd className="mt-1 text-sm leading-snug text-muted-foreground">{st.label}</dd>
-            </div>
-          ))}
-        </dl>
+        <StatRow stats={stats} />
 
         <section id="calculator" className="mt-12 rounded-lg border bg-secondary/50 p-6 sm:p-8">
           <h2 className="text-2xl font-extrabold tracking-tight">Live win calculator</h2>

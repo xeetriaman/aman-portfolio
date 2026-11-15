@@ -4,7 +4,8 @@ import { Empty, PageTitle, Section } from "@/components/admin/section";
 import { StatusDot } from "@/components/admin/status-dot";
 import { STATUS_DOT } from "@/lib/admin/constants";
 import { STATUS_LABEL, getCourses, getJobs, getLastRuns, getProjects, getSkillDemand, type JobStatus } from "@/lib/admin/data";
-import { longToday, timeAgo } from "@/lib/admin/format";
+import { WeeklyProgress } from "@/components/admin/weekly-progress";
+import { daysUntil, longToday, timeAgo } from "@/lib/admin/format";
 
 const FUNNEL: JobStatus[] = ["queued", "applied", "replied", "interview", "offer"];
 const RUN_LABEL: Record<string, string> = { jobs: "Job search", recruiters: "Recruiters", project: "Project build", report: "Weekly report" };
@@ -12,11 +13,16 @@ const RUN_LABEL: Record<string, string> = { jobs: "Job search", recruiters: "Rec
 export default async function AdminHome() {
   const [jobs, projects, courses, skills, runs] = await Promise.all([getJobs(), getProjects(), getCourses(), getSkillDemand(), getLastRuns()]);
 
-  const toApply = jobs.filter((j) => j.status === "queued").sort((a, b) => (b.chance ?? 0) - (a.chance ?? 0));
+  // Jobs closing within a week jump the queue; otherwise best chance first.
+  const urgency = (closes: string | null) => (closes && daysUntil(closes) >= 0 && daysUntil(closes) <= 7 ? 1 : 0);
+  const toApply = jobs
+    .filter((j) => j.status === "queued")
+    .sort((a, b) => urgency(b.closes_on) - urgency(a.closes_on) || (b.chance ?? 0) - (a.chance ?? 0));
   const counts = Object.fromEntries(FUNNEL.map((s) => [s, jobs.filter((j) => j.status === s).length])) as Record<JobStatus, number>;
   const funnelTotal = FUNNEL.reduce((sum, s) => sum + counts[s], 0);
   const project = projects.at(0);
   const gaps = skills.filter((s) => !s.have).slice(0, 6);
+  const closingSoon = toApply.filter((j) => j.closes_on && daysUntil(j.closes_on) >= 0 && daysUntil(j.closes_on) <= 7);
   const lastRun = Object.fromEntries([...runs].reverse().map((r) => [r.kind, r.ran_at]));
 
   return (
@@ -25,6 +31,12 @@ export default async function AdminHome() {
         {toApply.length
           ? `${toApply.length} ${toApply.length === 1 ? "job is" : "jobs are"} ready for you to apply to.`
           : "Nothing waiting for you right now."}
+        {closingSoon.length > 0 && (
+          <span className="font-semibold text-negative">
+            {" "}
+            {closingSoon.length} {closingSoon.length === 1 ? "closes" : "close"} within a week.
+          </span>
+        )}
       </PageTitle>
 
       <Section title="Apply next" more={toApply.length > 6 ? { href: "/admin/jobs?status=queued", label: `All ${toApply.length}` } : undefined}>
@@ -51,6 +63,10 @@ export default async function AdminHome() {
             </div>
           ))}
         </dl>
+      </Section>
+
+      <Section title="Applications per week">
+        <WeeklyProgress jobs={jobs} />
       </Section>
 
       <div className="grid gap-x-12 md:grid-cols-2">

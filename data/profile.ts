@@ -69,6 +69,7 @@ export const projects: Project[] = [
       "Cleaned 210,551 NSW Valuer General sale records to 37,910 Sydney house sales, tracked a 12% price fall through 2018 in SQL, and tested price models on later sales: gradient boosting beat the suburb-median baseline (13.1% vs 14.7% typical error).",
     stack: ["Python", "SQL", "pandas", "scikit-learn", "Machine learning"],
     links: [
+      { label: "Open dashboard", href: "/projects/sydney-house-prices" },
       { label: "Code and SQL", href: "https://github.com/xeetriaman/data-projects/tree/main/sydney-house-prices" },
     ],
   },
