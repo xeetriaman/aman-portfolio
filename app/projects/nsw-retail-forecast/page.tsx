@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "NSW Retail Sales Forecast, 2010–2025 | Aman Chhetri",
   description:
     "ABS monthly retail turnover for NSW by store type: growth, the Christmas peak, the 2021 lockdown, and a Holt-Winters forecast backtested over three years against a simple baseline.",
+  openGraph: { title: "NSW Retail Sales Forecast, 2010–2025", description: "ABS monthly retail turnover for NSW by store type: growth, the Christmas peak, the 2021 lockdown, and a Holt-Winters forecast backtested over three years against a simple baseline.", type: "article" },
 };
 
 const CODE = "https://github.com/xeetriaman/data-projects/tree/main/nsw-retail-forecast";

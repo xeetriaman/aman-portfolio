@@ -13,6 +13,7 @@ export const metadata: Metadata = {
   title: "Sydney House Price Model, 2018 | Aman Chhetri",
   description:
     "37,910 Sydney house sales from NSW Valuer General records: the 2018 price fall, what land costs by suburb and zoning, and a price model tested on later sales.",
+  openGraph: { title: "Sydney House Price Model, 2018", description: "37,910 Sydney house sales from NSW Valuer General records: the 2018 price fall, what land costs by suburb and zoning, and a price model tested on later sales.", type: "article" },
 };
 
 const CODE = "https://github.com/xeetriaman/data-projects/tree/main/sydney-house-prices";

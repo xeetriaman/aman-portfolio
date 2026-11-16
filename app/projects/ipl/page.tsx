@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "IPL Match Analytics, 2008–2026 | Aman Chhetri",
   description:
     "What decides a T20 match? Analysis of 1,243 IPL matches with Python and SQL, plus a live win-probability model.",
+  openGraph: { title: "IPL Match Analytics, 2008–2026", description: "What decides a T20 match? Analysis of 1,243 IPL matches with Python and SQL, plus a live win-probability model.", type: "article" },
 };
 
 const CODE = "https://github.com/xeetriaman/data-projects/tree/main/ipl-match-analytics";
