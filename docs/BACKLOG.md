@@ -6,7 +6,7 @@ Every item: follow CLAUDE.md, run `npm run build`, screenshot changed pages at 3
 - [x] (2026-11-24) **Upgrade to the latest stable Next.js and React.** Follow the official upgrade guide and codemods, fix breaking changes (for example async `params`, `cookies()` and `headers()`), update `@supabase/ssr` if needed, and check every public page and the admin still work.
 - [x] (2026-11-24) **Modern project cards on the home and projects pages.** Use Watermelon UI components if they install cleanly through its shadcn registry in TypeScript + Tailwind (check each component's dependencies first); otherwise build the same effect with Tailwind and `motion`. Each card shows the project question, one headline result number from its data JSON, skill tags and a subtle hover. Creative but clean, matching the site's existing design language.
 - [x] (2026-11-24) **Admin overview stat cards.** A top row of animated stat cards: applied this week, queued, replies, response rate, jobs closing in the next 3 days, recruiters due a follow-up. Count-up numbers (React Bits or Watermelon UI), all values live from Supabase.
-- [ ] **Admin jobs filters.** Filter and sort jobs by status, board, chance and closing date, with a "closing soon" badge.
+- [x] (2026-11-24) **Admin jobs filters.** Filter and sort jobs by status, board, chance and closing date, with a "closing soon" badge.
 - [ ] **Admin recruiters.** A "follow-up due" list and clear status chips.
 - [ ] **Admin charts.** An application funnel (queued, applied, replied, interview) and a skills-gap chart from `skill_demand`.
 - [ ] **Projects page filter by skill** (SQL, Python, forecasting, statistics and so on).
