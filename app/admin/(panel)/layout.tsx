@@ -6,8 +6,6 @@ import { signOut } from "@/app/admin/actions";
 
 export const metadata: Metadata = { title: "Career admin", robots: { index: false, follow: false } };
 export const dynamic = "force-dynamic";
-// Run next to the Sydney database, not in the default US region.
-export const preferredRegion = "syd1";
 
 export default function PanelLayout({ children }: { children: React.ReactNode }) {
   return (

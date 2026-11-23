@@ -11,8 +11,9 @@ import { Button } from "@/components/ui/button";
 import { getJob } from "@/lib/admin/data";
 import { shortDate } from "@/lib/admin/format";
 
-export default async function JobPage({ params }: { params: { id: string } }) {
-  const job = await getJob(Number(params.id));
+export default async function JobPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const job = await getJob(Number(id));
   if (!job) notFound();
 
   const missing = new Set(job.missing_skills.map((s) => s.toLowerCase()));

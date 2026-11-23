@@ -1,8 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-// Keeps the Supabase session fresh and keeps everything under /admin behind the login.
-export async function middleware(request: NextRequest) {
+// Proxy (formerly middleware): keeps the Supabase session fresh and keeps everything under /admin behind the login.
+export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request });
 
   const supabase = createServerClient(

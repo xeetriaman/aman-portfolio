@@ -12,8 +12,9 @@ const FILTERS: { key: string; label: string; statuses?: JobStatus[] }[] = [
   { key: "done", label: "Closed", statuses: ["rejected", "skipped", "closed"] },
 ];
 
-export default async function JobsPage({ searchParams }: { searchParams: { status?: string } }) {
-  const active = FILTERS.find((f) => f.key === searchParams.status) ?? FILTERS[0];
+export default async function JobsPage({ searchParams }: { searchParams: Promise<{ status?: string }> }) {
+  const { status } = await searchParams;
+  const active = FILTERS.find((f) => f.key === status) ?? FILTERS[0];
   const jobs = await getJobs(active.statuses);
 
   return (

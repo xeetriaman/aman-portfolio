@@ -72,31 +72,31 @@ function rows<T>({ data, error }: { data: unknown; error: { message: string } | 
 }
 
 export async function getJobs(status?: JobStatus[]) {
-  let query = createClient().from("jobs").select("*").order("found_on", { ascending: false }).order("chance", { ascending: false, nullsFirst: false });
+  let query = (await createClient()).from("jobs").select("*").order("found_on", { ascending: false }).order("chance", { ascending: false, nullsFirst: false });
   if (status) query = query.in("status", status);
   return rows<Job>(await query);
 }
 
 export async function getJob(id: number) {
-  return rows<Job>(await createClient().from("jobs").select("*").eq("id", id)).at(0) ?? null;
+  return rows<Job>(await (await createClient()).from("jobs").select("*").eq("id", id)).at(0) ?? null;
 }
 
 export async function getProjects() {
-  return rows<Project>(await createClient().from("projects").select("*").order("week_of", { ascending: false }));
+  return rows<Project>(await (await createClient()).from("projects").select("*").order("week_of", { ascending: false }));
 }
 
 export async function getRecruiters() {
-  return rows<Recruiter>(await createClient().from("recruiters").select("*").order("created_at", { ascending: false }));
+  return rows<Recruiter>(await (await createClient()).from("recruiters").select("*").order("created_at", { ascending: false }));
 }
 
 export async function getCourses() {
-  return rows<Course>(await createClient().from("courses").select("*").order("sort"));
+  return rows<Course>(await (await createClient()).from("courses").select("*").order("sort"));
 }
 
 export async function getSkillDemand() {
-  return rows<SkillDemand>(await createClient().from("skill_demand").select("*").order("ads", { ascending: false }).order("skill"));
+  return rows<SkillDemand>(await (await createClient()).from("skill_demand").select("*").order("ads", { ascending: false }).order("skill"));
 }
 
 export async function getLastRuns() {
-  return rows<Run>(await createClient().from("runs").select("kind, ran_at, summary").order("ran_at", { ascending: false }).limit(20));
+  return rows<Run>(await (await createClient()).from("runs").select("kind, ran_at, summary").order("ran_at", { ascending: false }).limit(20));
 }
