@@ -8,8 +8,8 @@ Every item: follow CLAUDE.md, run `npm run build`, screenshot changed pages at 3
 - [x] (2026-11-24) **Admin overview stat cards.** A top row of animated stat cards: applied this week, queued, replies, response rate, jobs closing in the next 3 days, recruiters due a follow-up. Count-up numbers (React Bits or Watermelon UI), all values live from Supabase.
 - [x] (2026-11-24) **Admin jobs filters.** Filter and sort jobs by status, board, chance and closing date, with a "closing soon" badge.
 - [x] (2026-11-24) **Admin recruiters.** A "follow-up due" list and clear status chips.
-- [ ] **Admin charts.** An application funnel (queued, applied, replied, interview) and a skills-gap chart from `skill_demand`.
-- [ ] **Projects page filter by skill** (SQL, Python, forecasting, statistics and so on).
+- [x] (2026-11-24) **Admin charts.** Already covered: the Pipeline strip on the admin home and the skills-gap bars on the Skills page.
+- [ ] **Projects filter by skill** (worth it once there are 8+ data projects; until then the cards are enough) (SQL, Python, forecasting, statistics and so on).
 - [ ] **Home page polish.** One tasteful motion moment in the hero and a clear "what I can do for your team" section.
 - [ ] **Performance and accessibility audit.** Run the impeccable audit and Lighthouse on the main pages and fix the top issues.
 - [ ] **Resume and contact section polish.** Clear download button, LinkedIn and GitHub links, work rights stated plainly.
