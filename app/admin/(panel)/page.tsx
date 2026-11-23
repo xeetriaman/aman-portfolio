@@ -3,15 +3,24 @@ import { JobRow } from "@/components/admin/job-row";
 import { Empty, PageTitle, Section } from "@/components/admin/section";
 import { StatusDot } from "@/components/admin/status-dot";
 import { STATUS_DOT } from "@/lib/admin/constants";
-import { STATUS_LABEL, getCourses, getJobs, getLastRuns, getProjects, getSkillDemand, type JobStatus } from "@/lib/admin/data";
+import { STATUS_LABEL, getCourses, getJobs, getLastRuns, getProjects, getRecruiters, getSkillDemand, type JobStatus } from "@/lib/admin/data";
+import { StatCards, type Stat } from "@/components/admin/stat-cards";
 import { WeeklyProgress } from "@/components/admin/weekly-progress";
 import { daysUntil, longToday, timeAgo } from "@/lib/admin/format";
 
 const FUNNEL: JobStatus[] = ["queued", "applied", "replied", "interview", "offer"];
+const REPLIED: JobStatus[] = ["replied", "interview", "offer"];
 const RUN_LABEL: Record<string, string> = { jobs: "Job search", recruiters: "Recruiters", project: "Project build", report: "Weekly report" };
 
 export default async function AdminHome() {
-  const [jobs, projects, courses, skills, runs] = await Promise.all([getJobs(), getProjects(), getCourses(), getSkillDemand(), getLastRuns()]);
+  const [jobs, projects, courses, skills, runs, recruiters] = await Promise.all([
+    getJobs(),
+    getProjects(),
+    getCourses(),
+    getSkillDemand(),
+    getLastRuns(),
+    getRecruiters(),
+  ]);
 
   // Jobs closing within a week jump the queue; otherwise best chance first.
   const urgency = (closes: string | null) => (closes && daysUntil(closes) >= 0 && daysUntil(closes) <= 7 ? 1 : 0);
@@ -23,6 +32,23 @@ export default async function AdminHome() {
   const project = projects.at(0);
   const gaps = skills.filter((s) => !s.have).slice(0, 6);
   const closingSoon = toApply.filter((j) => j.closes_on && daysUntil(j.closes_on) >= 0 && daysUntil(j.closes_on) <= 7);
+  // Monday of this week in Sydney, as yyyy-mm-dd, so it compares directly with applied_on.
+  const today = new Date(new Date().toLocaleString("en-US", { timeZone: "Australia/Sydney" }));
+  today.setDate(today.getDate() - ((today.getDay() + 6) % 7));
+  const monday = today.toLocaleDateString("en-CA");
+  const applied = jobs.filter((j) => j.applied_on);
+  const replies = jobs.filter((j) => REPLIED.includes(j.status)).length;
+  const closing3 = toApply.filter((j) => j.closes_on && daysUntil(j.closes_on) >= 0 && daysUntil(j.closes_on) <= 3).length;
+  // Follow-ups go out after 5 business days, which is about a week.
+  const followUpDue = recruiters.filter((r) => r.status === "emailed" && r.first_emailed_on && daysUntil(r.first_emailed_on) <= -7).length;
+  const stats: Stat[] = [
+    { label: "Applied this week", value: applied.filter((j) => j.applied_on! >= monday).length, hint: `${applied.length} in total` },
+    { label: "Ready to apply", value: toApply.length, hint: "queued with a cover letter" },
+    { label: "Closing in 3 days", value: closing3, hint: "apply to these first", alert: closing3 > 0 },
+    { label: "Replies", value: replies, hint: "replied, interview or offer" },
+    { label: "Response rate", value: applied.length ? Math.round((replies / applied.length) * 100) : 0, suffix: "%", hint: "of applications sent" },
+    { label: "Follow-ups due", value: followUpDue, hint: "recruiters emailed a week ago" },
+  ];
   const lastRun = Object.fromEntries([...runs].reverse().map((r) => [r.kind, r.ran_at]));
 
   return (
@@ -38,6 +64,10 @@ export default async function AdminHome() {
           </span>
         )}
       </PageTitle>
+
+      <div className="mb-12">
+        <StatCards stats={stats} />
+      </div>
 
       <Section title="Apply next" more={toApply.length > 6 ? { href: "/admin/jobs?status=queued", label: `All ${toApply.length}` } : undefined}>
         {toApply.length ? (
