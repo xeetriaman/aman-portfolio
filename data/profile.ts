@@ -58,6 +58,8 @@ export type Project = {
   summary: string;
   stack: string[];
   status?: "in-progress";
+  /** Headline number for data projects, copied from the project's outputs. */
+  result?: { value: string; label: string };
   links?: { label: string; href: string }[];
 };
 
@@ -65,6 +67,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     title: "Women's Promotion Gap in Australian Workplaces, 2024–25",
+    result: { value: "0.975", label: "women promoted per man at the same employer (pooled: 0.91)" },
     summary:
       "WGEA data for 8,115 employers and 5.24 million staff, analysed in SQL and Python. Pooled, women were promoted into management at 0.91 times the rate of men, but against men at the same employer the ratio is 0.975, so most of the gap comes from where women work; finance still shows a clear same-employer gap (0.79).",
     stack: ["Python", "SQL", "pandas", "Statistics", "Workforce analytics"],
@@ -75,6 +78,7 @@ export const projects: Project[] = [
   },
   {
     title: "NSW Retail Sales Forecast, 2010–2025",
+    result: { value: "3.73%", label: "average forecast error a year ahead, against 6.41% for the baseline" },
     summary:
       "Fifteen years of ABS monthly retail turnover for NSW by store type, analysed in SQL and forecast a year ahead with Holt-Winters. Backtested over three years, it averaged 3.73% error against 6.41% for a same-month-last-year baseline, and 1.41% for total retail.",
     stack: ["Python", "SQL", "pandas", "statsmodels", "Forecasting"],
@@ -85,6 +89,7 @@ export const projects: Project[] = [
   },
   {
     title: "Sydney House Price Model, 2018",
+    result: { value: "13.1%", label: "typical price error on later sales, against 14.7% for the baseline" },
     summary:
       "Cleaned 210,551 NSW Valuer General sale records to 37,910 Sydney house sales, tracked a 12% price fall through 2018 in SQL, and tested price models on later sales: gradient boosting beat the suburb-median baseline (13.1% vs 14.7% typical error).",
     stack: ["Python", "SQL", "pandas", "scikit-learn", "Machine learning"],
@@ -95,6 +100,7 @@ export const projects: Project[] = [
   },
   {
     title: "IPL Match Analytics, 2008–2026",
+    result: { value: "80%", label: "of chases called correctly after 10 overs" },
     summary:
       "What decides a T20 match? Analysed all 1,243 IPL matches ball by ball with Python and SQL, found the toss barely matters, and built a live win-probability model that calls 80% of chases correctly after 10 overs.",
     stack: ["Python", "SQL", "pandas", "scikit-learn", "Data visualisation"],

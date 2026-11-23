@@ -3,6 +3,10 @@ import { SiteHeader } from "@/components/site-header";
 import BlurText from "@/components/motion/BlurText";
 import { Button } from "@/components/ui/button";
 import { certifications, education, experience, profile, projects, skills } from "@/data/profile";
+import { ProjectCard } from "@/components/project-card";
+
+const dataProjects = projects.filter((p) => p.result);
+const apps = projects.filter((p) => !p.result);
 
 function SectionHeading({ id, children }: { id: string; children: React.ReactNode }) {
   return (
@@ -52,35 +56,20 @@ export default function Home() {
             <p className="mt-3 max-w-[60ch] text-muted-foreground">
               Data analysis with live dashboards, and full-stack apps you can try for yourself.
             </p>
-            <ul className="mt-10 divide-y border-y">
-              {projects.map((p) => (
-                <li key={p.title} className="grid gap-5 py-8 md:grid-cols-[1fr_auto] md:items-center md:gap-10">
-                  <div>
-                    <h3 className="flex flex-wrap items-center gap-3 text-xl font-bold">
-                      {p.title}
-                      {p.status === "in-progress" && (
-                        <span className="rounded-full border border-marigold px-2.5 py-0.5 text-xs font-semibold">
-                          In progress
-                        </span>
-                      )}
-                    </h3>
-                    <p className="mt-2 max-w-[62ch] leading-relaxed text-muted-foreground">{p.summary}</p>
-                    <p className="mt-3 text-sm font-medium">{p.stack.join(", ")}</p>
-                  </div>
-                  {p.links && (
-                    <div className="flex flex-wrap gap-2 md:justify-end">
-                      {p.links.map((l, i) => (
-                        <Button key={l.href} asChild size="sm" variant={i === 0 ? "default" : "outline"}>
-                          <a href={l.href} {...(l.href.startsWith("/") ? {} : { target: "_blank", rel: "noreferrer" })}>
-                            {l.label === "Live demo" ? "Open live demo" : l.label}
-                          </a>
-                        </Button>
-                      ))}
-                    </div>
-                  )}
-                </li>
+            {/* Newest data project leads; other data projects in a grid; apps last. */}
+            <div className="mt-10 grid gap-5 md:grid-cols-6">
+              {dataProjects.map((p, i) => (
+                <div key={p.title} className={i === 0 ? "md:col-span-6" : "md:col-span-3 lg:col-span-2"}>
+                  <ProjectCard project={p} featured={i === 0} />
+                </div>
               ))}
-            </ul>
+            </div>
+            <h3 className="mt-14 text-lg font-bold">Full-stack apps</h3>
+            <div className="mt-5 grid gap-5 md:grid-cols-2">
+              {apps.map((p) => (
+                <ProjectCard key={p.title} project={p} />
+              ))}
+            </div>
           </div>
         </section>
 
