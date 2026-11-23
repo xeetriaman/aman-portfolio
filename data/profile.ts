@@ -64,6 +64,16 @@ export type Project = {
 // New data projects get added to the top of this list as they ship.
 export const projects: Project[] = [
   {
+    title: "Women's Promotion Gap in Australian Workplaces, 2024–25",
+    summary:
+      "WGEA data for 8,115 employers and 5.24 million staff, analysed in SQL and Python. Pooled, women were promoted into management at 0.91 times the rate of men, but against men at the same employer the ratio is 0.975, so most of the gap comes from where women work; finance still shows a clear same-employer gap (0.79).",
+    stack: ["Python", "SQL", "pandas", "Statistics", "Workforce analytics"],
+    links: [
+      { label: "Open dashboard", href: "/projects/women-promotion-gap" },
+      { label: "Code and SQL", href: "https://github.com/xeetriaman/data-projects/tree/main/women-promotion-gap" },
+    ],
+  },
+  {
     title: "NSW Retail Sales Forecast, 2010–2025",
     summary:
       "Fifteen years of ABS monthly retail turnover for NSW by store type, analysed in SQL and forecast a year ahead with Holt-Winters. Backtested over three years, it averaged 3.73% error against 6.41% for a same-month-last-year baseline, and 1.41% for total retail.",

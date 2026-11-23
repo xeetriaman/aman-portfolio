@@ -7,12 +7,14 @@ export function BarRows({
   unit = "%",
   prefix = "",
   reference,
+  decimals,
 }: {
   rows: Row[];
   max: number;
   unit?: string;
   prefix?: string;
   reference?: number;
+  decimals?: number;
 }) {
   return (
     <ul className="space-y-2.5">
@@ -38,7 +40,7 @@ export function BarRows({
             />
             <span className="ml-2 text-sm font-semibold tabular-nums">
               {prefix}
-              {Number.isInteger(r.value) ? r.value.toLocaleString() : r.value.toFixed(1)}
+              {decimals !== undefined ? r.value.toFixed(decimals) : Number.isInteger(r.value) ? r.value.toLocaleString() : r.value.toFixed(1)}
               {unit}
             </span>
           </span>
