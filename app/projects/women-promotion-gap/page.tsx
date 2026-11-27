@@ -54,6 +54,15 @@ export default function PromotionGapPage() {
     { label: "Same employer", value: ratios[kind].same_employer, tone: "accent" as const },
   ];
 
+  const byYear = (measure: string) =>
+    data.replication
+      .filter((r) => r.measure === measure)
+      .map((r) => ({
+        label: `${r.year.replace("-", "–")}, ${r.adjustment === "crude" ? "pooled" : "same employer"}`,
+        value: r.estimate,
+        tone: r.adjustment === "crude" ? ("muted" as const) : ("accent" as const),
+      }));
+
   return (
     <>
       <SiteHeader />
@@ -136,6 +145,22 @@ export default function PromotionGapPage() {
           />
         </Block>
 
+        <Block
+          title="The same pattern a year earlier"
+          intro="To check this was not a one-year result, I ran the same code on WGEA's 2023–24 file. That file does not separate promotions into management, so promotions at any level stand in. In both years women resign slightly more often, mostly because of where they work, and the pooled promotion gap disappears inside the same employer."
+        >
+          <div className="grid gap-10 md:grid-cols-2">
+            <div>
+              <h3 className="mb-4 font-bold">Resignation, women to men</h3>
+              <BarRows max={1.4} unit="" decimals={3} reference={1} rows={byYear("resignation")} />
+            </div>
+            <div>
+              <h3 className="mb-4 font-bold">Promotion at any level, women to men</h3>
+              <BarRows max={1.4} unit="" decimals={3} reference={1} rows={byYear("promotion_any_level")} />
+            </div>
+          </div>
+        </Block>
+
         <section className="border-t pt-12">
           <h2 className="text-2xl font-extrabold tracking-tight">How it was built</h2>
           <ul className="mt-5 max-w-[66ch] list-disc space-y-2 pl-5 leading-relaxed marker:text-primary">
@@ -152,6 +177,7 @@ export default function PromotionGapPage() {
               Compared women with men inside each employer and industry using the Mantel-Haenszel ratio, with 95% intervals from
               resampling whole employers 1,000 times.
             </li>
+            <li>Repeated the comparison on the 2023–24 file to check the results hold in a second year.</li>
             <li>Unit tests check the ratio on hand-worked examples and that adjustment removes a gap caused only by where people work.</li>
           </ul>
           <p className="mt-6 max-w-[66ch] text-sm leading-relaxed text-muted-foreground">
@@ -161,7 +187,8 @@ export default function PromotionGapPage() {
             gap exists, not why.
           </p>
           <p className="mt-4 text-sm text-muted-foreground">
-            Data: Workplace Gender Equality Agency, WGEA Dataset 2025 (1 April 2024 to 31 March 2025), data.gov.au (CC BY 4.0).
+            Data: Workplace Gender Equality Agency, WGEA Dataset 2025 (1 April 2024 to 31 March 2025) and 2024 (1 April 2023
+            to 31 March 2024), data.gov.au (CC BY 4.0).
             Tools: Python, pandas, NumPy, SQL, pytest.
           </p>
           <Button asChild variant="outline" className="mt-6">

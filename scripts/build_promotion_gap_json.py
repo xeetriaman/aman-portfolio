@@ -63,6 +63,9 @@ def main(src: Path) -> None:
         "by_hours": pd.read_csv(out / "02_promotion_by_hours.csv").to_dict("records"),
         "overall": overall,
         "industries": industries,
+        "replication": [
+            {k: r[k] for k in ("year", "measure", "adjustment", "estimate", "ci95")} for r in metrics["replication"]
+        ],
     }
     Path("data/promotion-gap.json").write_text(json.dumps(data, separators=(",", ":")))
     print(f"{len(industries)} industries")
