@@ -20,6 +20,30 @@ export const skills: { group: string; items: string[] }[] = [
   { group: "Tools", items: ["Git", "GitHub", "Jupyter", "VS Code", "Figma", "C"] },
 ];
 
+/** What I can do for a team, each backed by a project that shows it. */
+export const strengths: { title: string; text: string; proof: { label: string; href: string } }[] = [
+  {
+    title: "Clean, join and check messy data",
+    text: "I turn raw exports into tidy tables with Python and SQL, and test the cleaning rules so mistakes are caught before they reach a report.",
+    proof: { label: "210,551 sale records cleaned to 37,910 Sydney house sales", href: "/projects/sydney-house-prices" },
+  },
+  {
+    title: "Answer questions fairly",
+    text: "I compare like with like and say how sure a number is, so a result holds up when someone asks how it was worked out.",
+    proof: { label: "A promotion gap traced to where women work, checked in a second year", href: "/projects/women-promotion-gap" },
+  },
+  {
+    title: "Forecast and model against a baseline",
+    text: "Every model is tested on data it has not seen and has to beat a simple baseline before I report it.",
+    proof: { label: "NSW retail forecast a year ahead at 3.73% error, against 6.41%", href: "/projects/nsw-retail-forecast" },
+  },
+  {
+    title: "Put results in front of people",
+    text: "I build dashboards and web apps in React and Next.js, so a team can open the numbers and explore them for themselves.",
+    proof: { label: "A live IPL win-probability calculator", href: "/projects/ipl" },
+  },
+];
+
 export type Job = { when: string; title: string; org: string; points: string[] };
 
 export const experience: Job[] = [

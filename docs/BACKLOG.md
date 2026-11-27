@@ -10,6 +10,6 @@ Every item: follow CLAUDE.md, run `npm run build`, screenshot changed pages at 3
 - [x] (2026-11-24) **Admin recruiters.** A "follow-up due" list and clear status chips.
 - [x] (2026-11-24) **Admin charts.** Already covered: the Pipeline strip on the admin home and the skills-gap bars on the Skills page.
 - [ ] **Projects filter by skill** (worth it once there are 8+ data projects; until then the cards are enough) (SQL, Python, forecasting, statistics and so on).
-- [ ] **Home page polish.** One tasteful motion moment in the hero and a clear "what I can do for your team" section.
+- [x] (2026-11-28) **Home page polish.** One tasteful motion moment in the hero and a clear "what I can do for your team" section. The hero already had its text reveal; added the section, four strengths each linked to the project that proves it.
 - [ ] **Performance and accessibility audit.** Run the impeccable audit and Lighthouse on the main pages and fix the top issues.
 - [ ] **Resume and contact section polish.** Clear download button, LinkedIn and GitHub links, work rights stated plainly.

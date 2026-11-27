@@ -1,8 +1,8 @@
-import { FileText, Github, Linkedin } from "lucide-react";
+import { ArrowUpRight, FileText, Github, Linkedin } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import BlurText from "@/components/motion/BlurText";
 import { Button } from "@/components/ui/button";
-import { certifications, education, experience, profile, projects, skills } from "@/data/profile";
+import { certifications, education, experience, profile, projects, skills, strengths } from "@/data/profile";
 import { ProjectCard } from "@/components/project-card";
 
 const dataProjects = projects.filter((p) => p.result);
@@ -46,7 +46,28 @@ export default function Home() {
               {profile.location}. Open to internships and entry-level roles.
             </p>
           </div>
+        </section>
 
+        {/* What I can do for a team, each point linked to the project that shows it */}
+        <section className="border-t py-20">
+          <div className="container">
+            <SectionHeading id="what-i-do">What I can do for your team</SectionHeading>
+            <ul className="mt-10 grid gap-x-12 gap-y-10 md:grid-cols-2">
+              {strengths.map((s) => (
+                <li key={s.title} className="border-t pt-5">
+                  <h3 className="text-xl font-bold">{s.title}</h3>
+                  <p className="mt-2 max-w-[48ch] leading-relaxed text-muted-foreground">{s.text}</p>
+                  <a
+                    href={s.proof.href}
+                    className="group mt-4 inline-flex min-h-11 items-start gap-1.5 py-2.5 text-[15px] font-semibold text-primary underline-offset-4 hover:underline"
+                  >
+                    {s.proof.label}
+                    <ArrowUpRight className="mt-0.5 size-4 shrink-0 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 motion-reduce:transition-none" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </section>
 
         {/* Projects */}
