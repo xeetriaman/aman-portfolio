@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Aman Chhetri | Data Analyst & Developer, Sydney",
   description:
     "Master of Data Science student at Macquarie University with three internships in data science and web development. Python, SQL, R and React.",
+  appleWebApp: { capable: true, title: "Career", statusBarStyle: "default" },
   openGraph: {
     title: "Aman Chhetri | Data Analyst & Developer",
     description: "Data analysis with Python, SQL and R, and full-stack web development. Based in Sydney.",
